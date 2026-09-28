@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'Cabinet Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom background patterns matching Stitch design */
+.bg-navy-dark {
+  background-color: #070F1E;
+}
+
+.bg-navy-card {
+  background-color: #0B172B;
+}
+
+.bg-navy-border {
+  border-color: rgba(56, 189, 248, 0.15);
+}
+
+.tech-grid-pattern {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.hero-glow {
+  background: radial-gradient(circle at 60% 30%, rgba(14, 165, 233, 0.15) 0%, rgba(2, 132, 199, 0.05) 45%, transparent 70%);
+}

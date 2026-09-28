@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function () {
+        try {
+          var _f = typeof window !== 'undefined' && window.fetch ? window.fetch.bind(window) : undefined;
+          Object.defineProperty(window, 'fetch', {
+            get: function () {
+              return _f;
+            },
+            set: function (newFetch) {
+              _f = newFetch;
+            },
+            configurable: true,
+            enumerable: true,
+          });
+        } catch (e) {
+          try {
+            if (typeof Window !== 'undefined' && Window.prototype) {
+              var _pf = Window.prototype.fetch;
+              Object.defineProperty(Window.prototype, 'fetch', {
+                get: function () {
+                  return _pf;
+                },
+                set: function (newFetch) {
+                  _pf = newFetch;
+                },
+                configurable: true,
+                enumerable: true,
+              });
+            }
+          } catch (err) {}
+        }
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KHURSHID ENTERPRISE | Digital, Creative, Printing & Technology Solutions</title>
+    <meta name="description" content="Established in 2019, KHURSHID ENTERPRISE provides digital, creative, printing and commercial solutions across apps development, web design & development, graphics designing & pre-press, and commercial printing & general order supplies." />
+    <link rel="canonical" href="https://www.khurshidenterprise.com/" />
+    <meta property="og:title" content="KHURSHID ENTERPRISE | Digital, Creative, Printing & Technology Solutions" />
+    <meta property="og:description" content="Professional digital, creative, printing and commercial solutions for businesses and individuals. Established in 2019." />
+    <meta property="og:url" content="https://www.khurshidenterprise.com/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Cabinet+Grotesk:wght@600;700;800;900&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-cyan-500 selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

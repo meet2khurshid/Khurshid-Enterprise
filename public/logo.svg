@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" width="100%" height="100%">
+  <defs>
+    <!-- Cyan to Blue Arrow Gradient -->
+    <linearGradient id="keArrowGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284C7" />
+      <stop offset="40%" stop-color="#0EA5E9" />
+      <stop offset="75%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#BAE6FD" />
+    </linearGradient>
+
+    <!-- Arrow Underbelly Dark Blue Gradient -->
+    <linearGradient id="keArrowDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#075985" />
+      <stop offset="60%" stop-color="#0369A1" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+
+    <!-- Deep Navy for E and Base -->
+    <linearGradient id="keNavyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0C3466" />
+      <stop offset="50%" stop-color="#082347" />
+      <stop offset="100%" stop-color="#04142B" />
+    </linearGradient>
+
+    <!-- Circuit Cyan -->
+    <linearGradient id="keCircuitGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="keGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- EMBLEM ICON (Left) -->
+  <g transform="translate(10, 10)">
+    <!-- Circuit nodes and traces (Left side of K) -->
+    <!-- Square node 1 (top) -->
+    <rect x="28" y="48" width="10" height="10" fill="url(#keCircuitGrad)" rx="1" />
+    <path d="M38 53 H 48" stroke="#38BDF8" stroke-width="3" stroke-linecap="round" />
+    
+    <!-- Square node 2 (upper mid) -->
+    <rect x="42" y="32" width="9" height="9" fill="url(#keCircuitGrad)" rx="1" />
+    <path d="M46 41 V 58 H 54" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Circuit path 3 (middle branch) -->
+    <circle cx="26" cy="98" r="4.5" fill="#38BDF8" />
+    <path d="M31 98 H 54" stroke="#38BDF8" stroke-width="3" stroke-linecap="round" />
+    
+    <!-- Circuit path 4 (lower branch) -->
+    <rect x="18" y="74" width="8" height="8" fill="#0284C7" rx="1" />
+    <path d="M26 78 H 38 V 92 H 54" stroke="#0284C7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+
+    <!-- Square node 5 (bottom) -->
+    <circle cx="32" cy="138" r="4" fill="#0369A1" />
+    <path d="M36 138 H 54" stroke="#0369A1" stroke-width="2.5" stroke-linecap="round" />
+
+    <!-- Vertical Stem of 'K' (Navy & Blue with internal track) -->
+    <path d="M54 48 H 76 V 162 H 54 Z" fill="url(#keNavyGrad)" />
+    <!-- Vertical cyan trace inside K stem -->
+    <path d="M65 58 V 150" stroke="#0284C7" stroke-width="2" stroke-dasharray="8 6" opacity="0.6" />
+
+    <!-- Rising Arrow Shaft and E-crossbars (The iconic KE mark) -->
+    <!-- Lower leg of K / bottom spine of E -->
+    <path d="M76 132 L 118 162 H 168 V 142 H 106 L 86 128 Z" fill="url(#keNavyGrad)" />
+
+    <!-- Middle bar of E -->
+    <path d="M96 98 H 158 V 118 H 108 Z" fill="url(#keNavyGrad)" />
+
+    <!-- Dynamic 3D Chevron Arrow Shaft -->
+    <!-- Layer 1: Darker underside -->
+    <path d="M54 132 L 126 58 L 152 78 L 88 144 Z" fill="url(#keArrowDark)" />
+    
+    <!-- Layer 2: Main bright cyan arrow body -->
+    <path d="M54 122 L 122 46 L 150 70 L 166 40 L 140 18 L 114 40 L 76 82 L 54 104 Z" fill="url(#keArrowGrad)" />
+    
+    <!-- Layer 3: Large Arrowhead pointing top-right -->
+    <polygon points="182,10 134,22 152,42 124,70 148,88 174,58 190,74" fill="url(#keArrowGrad)" />
+    <polygon points="182,10 148,88 140,82 170,48" fill="#38BDF8" opacity="0.6" />
+    <polygon points="182,10 134,22 144,34 168,26" fill="#E0F2FE" />
+  </g>
+
+  <!-- TYPOGRAPHY: KHURSHID ENTERPRISE -->
+  <g transform="translate(225, 30)">
+    <!-- KHURSHID -->
+    <text x="0" y="58" font-family="'Cabinet Grotesk', 'Plus Jakarta Sans', 'Arial Black', sans-serif" font-size="52" font-weight="900" letter-spacing="1.5" fill="#0C2D57">
+      KHURSHID
+    </text>
+
+    <!-- ENTERPRISE -->
+    <text x="0" y="112" font-family="'Cabinet Grotesk', 'Plus Jakarta Sans', 'Arial Black', sans-serif" font-size="46" font-weight="900" letter-spacing="2" fill="#0C2D57">
+      ENTERPRISE
+    </text>
+
+    <!-- SUBTITLE: DIGITAL SOLUTIONS with decorative gradient rules -->
+    <g transform="translate(0, 138)">
+      <!-- Left cyan line -->
+      <line x1="0" y1="-5" x2="30" y2="-5" stroke="#38BDF8" stroke-width="3" stroke-linecap="round" />
+      <circle cx="34" cy="-5" r="2.5" fill="#0284C7" />
+
+      <!-- Text -->
+      <text x="50" y="0" font-family="'Plus Jakarta Sans', 'Segoe UI', sans-serif" font-size="16" font-weight="800" letter-spacing="6" fill="#0C3466">
+        DIGITAL SOLUTIONS
+      </text>
+
+      <!-- Right cyan line -->
+      <circle cx="276" cy="-5" r="2.5" fill="#0284C7" />
+      <line x1="280" y1="-5" x2="310" y2="-5" stroke="#38BDF8" stroke-width="3" stroke-linecap="round" />
+    </g>
+  </g>
+</svg>
