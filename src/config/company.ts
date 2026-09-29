@@ -22,7 +22,7 @@ export const COMPANY_CONFIG = {
     phone: "+92 315 8391364",
     phoneRaw: "+923158391364",
     whatsapp: "+92 315 8391364",
-    whatsappLink: "https://wa.me/923158391364",
+    whatsappLink: "https://api.whatsapp.com/send?phone=923158391364",
     operatingHours: "Mon - Sat: 9:00 AM - 8:00 PM",
   },
 

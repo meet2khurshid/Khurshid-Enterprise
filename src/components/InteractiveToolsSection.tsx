@@ -145,11 +145,7 @@ Delivery: ${calculation.turnaround}
       `*Estimated Cost:* ${currency === 'PKR' ? `PKR ${calculation.totalPKR.toLocaleString()}` : `$${calculation.totalUSD.toLocaleString()}`}\n\n` +
       `Please provide formal commercial confirmation and proofing timeline.`
     );
-    const link = document.createElement('a');
-    link.href = `https://wa.me/923158391364?text=${text}`;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    link.click();
+    window.open(`https://api.whatsapp.com/send?phone=923158391364&text=${text}`, '_blank', 'noopener,noreferrer');
   };
 
   // ==========================================

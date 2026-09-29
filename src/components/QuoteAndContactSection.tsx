@@ -34,6 +34,7 @@ export const QuoteAndContactSection: React.FC<QuoteAndContactProps> = ({
   const [submitted, setSubmitted] = useState(false);
   const [copiedAddress, setCopiedAddress] = useState(false);
   const [copiedRfq, setCopiedRfq] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
@@ -52,6 +53,12 @@ export const QuoteAndContactSection: React.FC<QuoteAndContactProps> = ({
     navigator.clipboard.writeText(COMPANY_CONFIG.address);
     setCopiedAddress(true);
     setTimeout(() => setCopiedAddress(false), 2500);
+  };
+
+  const handleCopyEmailAddress = () => {
+    navigator.clipboard.writeText(COMPANY_CONFIG.contact.email);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2500);
   };
 
   const validate = () => {
@@ -78,6 +85,40 @@ export const QuoteAndContactSection: React.FC<QuoteAndContactProps> = ({
     setSubmitted(true);
   };
 
+  const handleQuickWhatsAppSubmit = () => {
+    if (!validate()) return;
+    setSubmitted(true);
+    const selectedServiceObj = COMPANY_CONFIG.services.find((s) => s.id === service);
+    const serviceName = selectedServiceObj ? selectedServiceObj.title : service;
+    const text = encodeURIComponent(
+      `*KHURSHID ENTERPRISE - RFQ INQUIRY*\n\n` +
+      `*Name / Org:* ${fullName}\n` +
+      `*Phone:* ${phone}\n` +
+      `*Email:* ${email}\n` +
+      `*Service:* ${serviceName}\n` +
+      `*Requirements:*\n${requirements}\n`
+    );
+    window.open(`https://api.whatsapp.com/send?phone=923158391364&text=${text}`, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleQuickEmailSubmit = () => {
+    if (!validate()) return;
+    setSubmitted(true);
+    const selectedServiceObj = COMPANY_CONFIG.services.find((s) => s.id === service);
+    const serviceName = selectedServiceObj ? selectedServiceObj.title : service;
+    const subject = encodeURIComponent(`RFQ: ${serviceName} - ${fullName}`);
+    const body = encodeURIComponent(
+      `Hello KHURSHID ENTERPRISE Team,\n\nI would like to request a formal quotation:\n\n` +
+      `Organization/Name: ${fullName}\n` +
+      `Contact Phone: ${phone}\n` +
+      `Email: ${email}\n` +
+      `Service: ${serviceName}\n\n` +
+      `Project Scope & Details:\n${requirements}\n\n` +
+      `Thank you.`
+    );
+    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${COMPANY_CONFIG.contact.email}&su=${subject}&body=${body}`, '_blank', 'noopener,noreferrer');
+  };
+
   const handleCopyRfqDetails = () => {
     const selectedServiceObj = COMPANY_CONFIG.services.find((s) => s.id === service);
     const serviceName = selectedServiceObj ? selectedServiceObj.title : service;
@@ -96,39 +137,35 @@ Date: ${new Date().toLocaleDateString()}
     setTimeout(() => setCopiedRfq(false), 2500);
   };
 
-  const handleWhatsAppDirect = () => {
-    const selectedServiceObj = COMPANY_CONFIG.services.find((s) => s.id === service);
-    const serviceName = selectedServiceObj ? selectedServiceObj.title : service;
-    const text = encodeURIComponent(
-      `*KHURSHID ENTERPRISE - RFQ INQUIRY*\n\n` +
-      `*Name / Org:* ${fullName}\n` +
-      `*Phone:* ${phone}\n` +
-      `*Email:* ${email}\n` +
-      `*Service:* ${serviceName}\n` +
-      `*Requirements:*\n${requirements}\n`
-    );
-    const link = document.createElement('a');
-    link.href = `https://wa.me/923158391364?text=${text}`;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    link.click();
-  };
+  // Pre-compiled transmission URLs
+  const selectedServiceObj = COMPANY_CONFIG.services.find((s) => s.id === service);
+  const currentServiceName = selectedServiceObj ? selectedServiceObj.title : service;
+  
+  const formattedWhatsAppText = encodeURIComponent(
+    `*KHURSHID ENTERPRISE - RFQ INQUIRY*\n\n` +
+    `*Name / Org:* ${fullName}\n` +
+    `*Phone:* ${phone}\n` +
+    `*Email:* ${email}\n` +
+    `*Service:* ${currentServiceName}\n` +
+    `*Specifications:*\n${requirements}\n`
+  );
 
-  const handleMailto = () => {
-    const selectedServiceObj = COMPANY_CONFIG.services.find((s) => s.id === service);
-    const serviceName = selectedServiceObj ? selectedServiceObj.title : service;
-    const subject = encodeURIComponent(`RFQ: ${serviceName} - ${fullName}`);
-    const body = encodeURIComponent(
-      `Hello KHURSHID ENTERPRISE Team,\n\nI would like to request a formal quotation:\n\n` +
-      `Organization/Name: ${fullName}\n` +
-      `Contact Phone: ${phone}\n` +
-      `Email: ${email}\n` +
-      `Service: ${serviceName}\n\n` +
-      `Project Scope & Details:\n${requirements}\n\n` +
-      `Thank you.`
-    );
-    window.location.href = `mailto:${COMPANY_CONFIG.contact.email}?subject=${subject}&body=${body}`;
-  };
+  const whatsappAppUrl = `https://api.whatsapp.com/send?phone=923158391364&text=${formattedWhatsAppText}`;
+  const whatsappWebUrl = `https://web.whatsapp.com/send?phone=923158391364&text=${formattedWhatsAppText}`;
+
+  const emailSubjectEncoded = encodeURIComponent(`RFQ Inquiry: ${currentServiceName} - ${fullName}`);
+  const emailBodyEncoded = encodeURIComponent(
+    `Hello KHURSHID ENTERPRISE Team,\n\nI would like to request a formal quotation:\n\n` +
+    `Organization/Name: ${fullName}\n` +
+    `Contact Phone: ${phone}\n` +
+    `Email: ${email}\n` +
+    `Service: ${currentServiceName}\n\n` +
+    `Project Scope & Details:\n${requirements}\n\n` +
+    `Thank you.`
+  );
+
+  const gmailWebUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${COMPANY_CONFIG.contact.email}&su=${emailSubjectEncoded}&body=${emailBodyEncoded}`;
+  const mailtoUrl = `mailto:${COMPANY_CONFIG.contact.email}?subject=${emailSubjectEncoded}&body=${emailBodyEncoded}`;
 
   return (
     <section id="contact" className="py-24 bg-white text-slate-900 border-b border-slate-200">
@@ -282,13 +319,13 @@ Date: ${new Date().toLocaleDateString()}
             {submitted ? (
               <div className="rounded-xl bg-emerald-50 border border-emerald-200 p-6 sm:p-8 space-y-5 animate-in fade-in duration-300">
                 <div className="flex items-center gap-3 text-emerald-800">
-                  <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
                     <CheckCircle2 className="w-6 h-6 text-emerald-600" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-lg font-heading">RFQ Inquiry Received!</h4>
+                    <h4 className="font-bold text-lg font-heading">RFQ Inquiry Prepared!</h4>
                     <p className="text-xs text-emerald-700">
-                      Your inquiry has been compiled and is ready for transmission to KHURSHID ENTERPRISE.
+                      Your project specification is ready to transmit directly to our team.
                     </p>
                   </div>
                 </div>
@@ -297,51 +334,94 @@ Date: ${new Date().toLocaleDateString()}
                   <div><strong className="text-slate-900">Name/Org:</strong> {fullName}</div>
                   <div><strong className="text-slate-900">Email:</strong> {email}</div>
                   <div><strong className="text-slate-900">Phone:</strong> {phone}</div>
-                  <div><strong className="text-slate-900">Service:</strong> {COMPANY_CONFIG.services.find(s => s.id === service)?.title || service}</div>
+                  <div><strong className="text-slate-900">Service:</strong> {currentServiceName}</div>
                   <div><strong className="text-slate-900">Specifications:</strong> {requirements}</div>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-3 pt-2">
-                  <button
-                    type="button"
-                    onClick={handleWhatsAppDirect}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 shadow-md shadow-emerald-600/20 transition-all cursor-pointer"
-                  >
-                    <Phone className="w-3.5 h-3.5" />
-                    <span>Send via WhatsApp (+92 315 8391364)</span>
-                  </button>
+                {/* Direct Transmission Options */}
+                <div className="space-y-3 pt-2">
+                  <p className="text-[11px] font-bold uppercase tracking-wider text-slate-600">
+                    Select Transmission Method:
+                  </p>
 
-                  <button
-                    type="button"
-                    onClick={handleMailto}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold text-white bg-sky-600 hover:bg-sky-500 transition-colors cursor-pointer"
-                  >
-                    <Mail className="w-3.5 h-3.5" />
-                    <span>Send via Email ({COMPANY_CONFIG.contact.email})</span>
-                  </button>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {/* WhatsApp Mobile / App */}
+                    <a
+                      href={whatsappAppUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-500 shadow-md shadow-emerald-600/20 transition-all text-center"
+                    >
+                      <Phone className="w-4 h-4" />
+                      <span>Send to WhatsApp (+92 315 8391364)</span>
+                    </a>
 
-                  <button
-                    type="button"
-                    onClick={handleCopyRfqDetails}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-semibold text-slate-800 bg-white border border-slate-300 hover:bg-slate-50 transition-colors cursor-pointer"
-                  >
-                    <Copy className="w-3.5 h-3.5" />
-                    <span>{copiedRfq ? 'Copied to Clipboard!' : 'Copy RFQ Summary'}</span>
-                  </button>
+                    {/* WhatsApp Web (for PC/Laptops) */}
+                    <a
+                      href={whatsappWebUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-xs font-semibold text-emerald-950 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 transition-all text-center"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5 text-emerald-700" />
+                      <span>Open on WhatsApp Web</span>
+                    </a>
 
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setSubmitted(false);
-                      setFullName('');
-                      setEmail('');
-                      setPhone('');
-                      setRequirements('');
-                    }}
-                    className="text-xs font-semibold text-sky-700 hover:underline ml-auto"
-                  >
-                    Submit Another Inquiry
-                  </button>
+                    {/* Direct Gmail Web in browser */}
+                    <a
+                      href={gmailWebUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-xs font-semibold text-white bg-sky-600 hover:bg-sky-500 shadow-md shadow-sky-600/20 transition-all text-center"
+                    >
+                      <Mail className="w-4 h-4" />
+                      <span>Open in Gmail (Web)</span>
+                    </a>
+
+                    {/* Default Mail App (Outlook / Apple Mail) */}
+                    <a
+                      href={mailtoUrl}
+                      className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-50 border border-slate-300 transition-all text-center"
+                    >
+                      <Mail className="w-4 h-4 text-slate-500" />
+                      <span>Default Mail App (Outlook)</span>
+                    </a>
+                  </div>
+
+                  {/* Secondary Copy Actions */}
+                  <div className="flex flex-wrap items-center gap-2.5 pt-3 border-t border-emerald-200/60">
+                    <button
+                      type="button"
+                      onClick={handleCopyRfqDetails}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 transition-colors cursor-pointer"
+                    >
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>{copiedRfq ? 'RFQ Copied to Clipboard!' : 'Copy RFQ Summary'}</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={handleCopyEmailAddress}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 transition-colors cursor-pointer"
+                    >
+                      <Copy className="w-3.5 h-3.5" />
+                      <span>{copiedEmail ? 'Email Copied!' : 'Copy meet2khurshid@gmail.com'}</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSubmitted(false);
+                        setFullName('');
+                        setEmail('');
+                        setPhone('');
+                        setRequirements('');
+                      }}
+                      className="text-xs font-semibold text-sky-700 hover:underline ml-auto cursor-pointer"
+                    >
+                      Submit Another Inquiry
+                    </button>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -456,12 +536,30 @@ Date: ${new Date().toLocaleDateString()}
                   )}
                 </div>
 
-                <div className="pt-2">
+                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={handleQuickWhatsAppSubmit}
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-white bg-emerald-600 hover:bg-emerald-500 shadow-md shadow-emerald-600/20 active:scale-95 transition-all cursor-pointer"
+                  >
+                    <Phone className="w-4 h-4" />
+                    <span>Send via WhatsApp (+92 315 8391364)</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={handleQuickEmailSubmit}
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-white bg-sky-600 hover:bg-sky-500 shadow-md shadow-sky-600/20 active:scale-95 transition-all cursor-pointer"
+                  >
+                    <Mail className="w-4 h-4" />
+                    <span>Send via Gmail Web</span>
+                  </button>
+
                   <button
                     type="submit"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-white bg-slate-950 hover:bg-slate-800 active:scale-95 transition-all shadow-md cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-lg text-xs font-semibold uppercase tracking-wider text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-300 active:scale-95 transition-all cursor-pointer"
                   >
-                    <span>Send Inquiry</span>
+                    <span>Review & Prepare</span>
                     <Send className="w-3.5 h-3.5" />
                   </button>
                 </div>
