@@ -46,7 +46,7 @@ export const COMPANY_CONFIG = {
         "Google Play Console Readiness & Compliance",
         "Production Cloud Synchronization",
       ],
-      image: "/src/assets/images/service_apps_dev_1790328037620.jpg",
+      image: "/images/service_apps_dev_1790328037620.jpg",
     },
     {
       id: "web-development",
@@ -66,7 +66,7 @@ export const COMPANY_CONFIG = {
         "Scalable Architecture",
         "Ultra-Fast Cloud Deployment",
       ],
-      image: "/src/assets/images/service_web_dev_1790328055528.jpg",
+      image: "/images/service_web_dev_1790328055528.jpg",
     },
     {
       id: "graphics-prepress",
@@ -86,7 +86,7 @@ export const COMPANY_CONFIG = {
         "CTP (Computer to Plate) Film Preparation",
         "Die-cut Trapping & Bleed Verification",
       ],
-      image: "/src/assets/images/service_graphic_prepress_1790328071275.jpg",
+      image: "/images/service_graphic_prepress_1790328071275.jpg",
     },
     {
       id: "commercial-printing",
@@ -106,7 +106,7 @@ export const COMPANY_CONFIG = {
         "Packaging & Stationery Production",
         "Institutional General Order Supplies",
       ],
-      image: "/src/assets/images/service_commercial_printing_1790328087329.jpg",
+      image: "/images/service_commercial_printing_1790328087329.jpg",
     },
   ],
 
@@ -119,7 +119,7 @@ export const COMPANY_CONFIG = {
       description: "Synchronized cross-platform application suites for real-time customer interaction and internal operations.",
       scope: "Applications Development & Web Systems",
       colSpan: "col-span-1 lg:col-span-2",
-      image: "/src/assets/images/hero_tech_print_composite_1790328018273.jpg",
+      image: "/images/hero_tech_print_composite_1790328018273.jpg",
     },
     {
       id: "create-2",
@@ -128,7 +128,7 @@ export const COMPANY_CONFIG = {
       description: "Clean analytical Play Console ready interfaces with strict data privacy and smooth navigation.",
       scope: "Android & iOS Applications",
       colSpan: "col-span-1",
-      image: "/src/assets/images/service_apps_dev_1790328037620.jpg",
+      image: "/images/service_apps_dev_1790328037620.jpg",
     },
     {
       id: "create-3",
@@ -137,7 +137,7 @@ export const COMPANY_CONFIG = {
       description: "Full brand suites, CMYK color manuals, and precision CTP plate preparation for flawless reproduction.",
       scope: "Graphics Designing & Pre-press",
       colSpan: "col-span-1",
-      image: "/src/assets/images/service_graphic_prepress_1790328071275.jpg",
+      image: "/images/service_graphic_prepress_1790328071275.jpg",
     },
     {
       id: "create-4",
@@ -146,7 +146,7 @@ export const COMPANY_CONFIG = {
       description: "Embossed rigid boxes, laminated product packs, premium foil jackets, and industrial runs.",
       scope: "Commercial Printing & Packaging",
       colSpan: "col-span-1",
-      image: "/src/assets/images/service_commercial_printing_1790328087329.jpg",
+      image: "/images/service_commercial_printing_1790328087329.jpg",
     },
     {
       id: "create-5",
@@ -155,7 +155,7 @@ export const COMPANY_CONFIG = {
       description: "Office registers, custom vouchers, forms, annual report collaterals, and institutional procurement logistics.",
       scope: "General Order Supplies",
       colSpan: "col-span-1",
-      image: "/src/assets/images/service_commercial_printing_1790328087329.jpg",
+      image: "/images/service_commercial_printing_1790328087329.jpg",
     },
   ],
 

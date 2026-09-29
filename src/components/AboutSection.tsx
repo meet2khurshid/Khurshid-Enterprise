@@ -20,7 +20,7 @@ export const AboutSection: React.FC = () => {
               {/* Primary Image Card: Design Workstation & Pre-press */}
               <div className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-xl bg-slate-100 aspect-[16/10] sm:aspect-[4/3]">
                 <img
-                  src="/src/assets/images/service_graphic_prepress_1790328071275.jpg"
+                  src="/images/service_graphic_prepress_1790328071275.jpg"
                   alt="Graphic Design & Pre-press facility at KHURSHID ENTERPRISE"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
@@ -33,7 +33,7 @@ export const AboutSection: React.FC = () => {
               {/* Overlapping Secondary Image: Tech & Web Portal */}
               <div className="hidden sm:block absolute -bottom-8 -right-6 w-3/5 rounded-xl overflow-hidden border-4 border-white shadow-2xl bg-slate-900 aspect-[16/10]">
                 <img
-                  src="/src/assets/images/service_web_dev_1790328055528.jpg"
+                  src="/images/service_web_dev_1790328055528.jpg"
                   alt="Web & App Development Portal"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"

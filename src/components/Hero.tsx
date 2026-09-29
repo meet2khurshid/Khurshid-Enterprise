@@ -110,7 +110,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onGetQuote }) => 
                 {/* Image */}
                 <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-[4/3] rounded-xl overflow-hidden bg-slate-950 group">
                   <img
-                    src="/src/assets/images/hero_tech_print_composite_1790328018273.jpg"
+                    src="/images/hero_tech_print_composite_1790328018273.jpg"
                     alt="KHURSHID ENTERPRISE digital apps, web portals and commercial printing packaging showcase"
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
                     referrerPolicy="no-referrer"
